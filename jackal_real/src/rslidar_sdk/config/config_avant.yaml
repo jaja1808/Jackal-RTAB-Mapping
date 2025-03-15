@@ -1,0 +1,21 @@
+common:
+  msg_source: 1  # 1: packet message comes from online LiDAR
+  send_packet_ros: false  # true: Send packets through ROS or ROS2 (used to record packet)
+  send_point_cloud_ros: true  # true: Send point cloud through ROS or ROS2
+ 
+lidar:
+  - driver:
+      lidar_type: RS16  # LiDAR type
+      # frame_id: "default_mount"  # Frame ID of the point cloud
+      msop_port: 6699  # Msop port of LiDAR
+      difop_port: 7788  # Difop port of LiDAR
+      
+      start_angle: 0.0  # Start angle of point cloud
+      end_angle: 360.0  # End angle of point cloud
+      wait_for_difop: true
+      min_distance: 0.2  # Minimum distance of point cloud
+      max_distance: 200.0  # Maximum distance of point cloud
+      use_lidar_clock: false  # Use system clock as timestamp
+    ros:
+      ros_frame_id: "base_link"  # Frame ID for ROS messages
+      ros_send_point_cloud_topic: "/rslidar_points"  # Topic to publish point clouds

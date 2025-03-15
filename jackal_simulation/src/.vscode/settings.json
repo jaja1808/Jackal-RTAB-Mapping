@@ -1,0 +1,14 @@
+{
+    "python.autoComplete.extraPaths": [
+        "/home/the_prince_ja/ros_ws/jackal_ws/install/jackal_recon/local/lib/python3.10/dist-packages",
+        "/home/the_prince_ja/ros_ws/jackal_ws/install/jackal_description_sim/local/lib/python3.10/dist-packages",
+        "/opt/ros/humble/lib/python3.10/site-packages",
+        "/opt/ros/humble/local/lib/python3.10/dist-packages"
+    ],
+    "python.analysis.extraPaths": [
+        "/home/the_prince_ja/ros_ws/jackal_ws/install/jackal_recon/local/lib/python3.10/dist-packages",
+        "/home/the_prince_ja/ros_ws/jackal_ws/install/jackal_description_sim/local/lib/python3.10/dist-packages",
+        "/opt/ros/humble/lib/python3.10/site-packages",
+        "/opt/ros/humble/local/lib/python3.10/dist-packages"
+    ]
+}

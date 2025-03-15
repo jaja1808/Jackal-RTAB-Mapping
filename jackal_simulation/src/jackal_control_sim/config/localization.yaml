@@ -1,0 +1,28 @@
+ekf_node:
+  ros__parameters:
+    odom_frame: base_link
+    base_link_frame: chassis_link
+    
+    publish_tf: true
+    # two_d_mode: true
+
+    frequency: 50.0
+
+    odom0: odom/unfiltered
+    odom0_config: [true, true, false,
+                  false, false, true,
+                  true, true, false,
+                  false, false, true,
+                  false, false, false]
+    odom0_differential: false
+    odom0_queue_size: 10
+
+    imu0: imu/data
+    imu0_config: [false, false, false,
+                  false, false, false,
+                  false, false, false,
+                  false, false, true,
+                  true, false, false]
+    imu0_differential: false
+    imu0_queue_size: 10
+    imu0_remove_gravitational_acceleration: true

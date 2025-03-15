@@ -1,0 +1,84 @@
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <!-- Camera Link -->
+  <link name="camera_link">
+    <inertial>
+      <origin xyz="-0.00036779 0.00323907 -0.0000530739" rpy="0 0 0" />
+      <mass value="0.040528" />
+      <inertia ixx="0.0000405786" ixy="0.0000003565" ixz="0.0000000466" iyy="0.0000034904" iyz="0.0000003889" izz="0.0000374942" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="${-pi/2} 0 ${-pi/2}" />
+      <geometry>
+        <mesh filename="package://jackal_description_sim/meshes/d435.dae" />
+      </geometry>
+      <material name="Gazebo/White">
+        <color rgba="1.0 1.0 1.0 1.0"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://jackal_description_sim/meshes/d435.dae" />
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- Camera Joint -->
+  <joint name="camera_joint" type="fixed">
+    <origin xyz="0.2 0 0.03" rpy="0 0 0" />
+    <parent link="mid_mount" />
+    <child link="camera_link" />
+  </joint>
+
+  <!-- Camera PointCloud Frame -->
+  <link name="camera_pointcloud_frame" />
+  <joint name="camera_pointcloud_joint" type="fixed">
+    <origin xyz="0 0 0" rpy="${-pi/2} 0 ${-pi/2}" />
+    <parent link="camera_link" />
+    <child link="camera_pointcloud_frame" />
+  </joint>
+
+  <!-- Gazebo Sensor for Camera (Depth and Color) -->
+  <gazebo reference="camera_link">
+    <sensor name="camera" type="depth">
+      <always_on>true</always_on>
+      <visualize>true</visualize>
+      <update_rate>30.0</update_rate>
+
+      <!-- Depth Camera -->
+      <camera name="intel_realsense_depth">
+        <horizontal_fov>0.872665</horizontal_fov>        <!-- FOV for D435 depth camera -->
+        <image>
+          <width>640</width>
+          <height>480</height>
+          <format>B8G8R8</format>
+        </image>
+        <clip>
+          <near>0.001</near>
+          <far>10.0</far>
+        </clip>
+        <noise>
+          <type>gaussian</type>
+          <mean>0.0</mean>
+          <stddev>0.007</stddev>
+        </noise>
+      </camera>
+
+      <!-- Gazebo Plugin for Depth Camera -->
+      <plugin name="depth_camera_controller" filename="libgazebo_ros_camera.so">
+        <baseline>0.05</baseline>
+        <alwaysOn>true</alwaysOn>
+        <updateRate>30.0</updateRate>
+        <frame_name>camera_pointcloud_frame</frame_name>
+        <pointCloudCutoff>0.3</pointCloudCutoff>
+        <pointCloudCutoffMax>10.0</pointCloudCutoffMax>
+        <CxPrime>640.0</CxPrime>
+        <Cx>640.0</Cx>
+        <Cy>360.0</Cy>
+        <focalLength>463.0</focalLength>
+        <hackBaseline>0</hackBaseline>
+      </plugin>
+      
+    </sensor>
+  </gazebo>
+</robot>

@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- Add Lidar 2D rplidar -->
+  <!-- <xacro:include filename="$(find jackal_description_sim)/urdf/accessories/lidar.urdf.xacro" /> -->
+  
+  <!--
+  Add a 3D lidar sensor.  By default this is a Velodyne VLP16 but can be changed with the
+  JACKAL_LASER_3D_MODEL environment variable. Valid model designations are:
+  - vlp16 (default)  :: Velodyne VLP16
+  - vlp32e           :: Velodyne HDL-32E
+  -->
+  <xacro:include filename="$(find jackal_description_sim)/urdf/accessories/vlp16_mount.urdf.xacro" />
+  <xacro:property name="mount" value="$(optenv JACKAL_LASER_3D_MOUNT mid)" />
+  <xacro:property name="topic" value="$(optenv JACKAL_LASER_3D_TOPIC mid/points)" />
+  <xacro:property name="tower" value="$(optenv JACKAL_LASER_3D_TOWER 1)" />
+  <xacro:property name="prefix" value="$(optenv JACKAL_LASER_3D_PREFIX ${mount})" />
+  <xacro:property name="parent" value="$(optenv JACKAL_LASER_3D_PARENT ${mount}_mount)" />
+  <xacro:property name="lidar_3d_model" value="$(optenv JACKAL_LASER_3D_MODEL vlp16)" />
+
+  <!-- Velodyne VLP16 -->
+  <xacro:if value="${lidar_3d_model == 'vlp16'}">
+    <xacro:vlp16_mount topic="${topic}" prefix="${prefix}" parent_link="${parent}">
+      <origin xyz="$(optenv JACKAL_LASER_3D_OFFSET 0 0 0)" rpy="$(optenv JACKAL_LASER_3D_RPY 0 0 0)" />
+    </xacro:vlp16_mount>
+  </xacro:if>
+  
+  <!-- Add Cameras realsense2 -->
+  <xacro:include filename="$(find jackal_description_sim)/urdf/accessories/stereo_realsense2.urdf.xacro" />
+
+</robot>

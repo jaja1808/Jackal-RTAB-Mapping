@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<robot>
+
+  <sensor name="imu_sensor" type="imu">
+  <update_rate>50</update_rate>
+  <always_on>true</always_on>
+  <plugin name="imu_plugin" filename="libgazebo_ros_imu_sensor.so">
+    <ros>
+      <remapping>~/out:=imu/data_raw</remapping>
+    </ros>
+    <initial_orientation_as_reference>false</initial_orientation_as_reference>
+    <noise>
+      <type>gaussian</type>
+      <mean>0.0</mean>
+      <stddev>0.01</stddev>
+    </noise>
+  </plugin>
+</sensor>
+
+
+
+  <gazebo reference="base_link">
+    <turnGravityOff>false</turnGravityOff>
+  </gazebo>
+
+  <gazebo reference="chassis_link">
+    <material>Gazebo/DarkGrey</material>
+    <!-- <material>Gazebo/Yellow</material> -->
+    <turnGravityOff>false</turnGravityOff>
+  </gazebo>
+    <gazebo reference="imu_link">
+    <material>Gazebo/Yellow</material>
+    <turnGravityOff>false</turnGravityOff>
+  </gazebo>
+
+  <gazebo reference="front_fender_link">
+    <material>Gazebo/Yellow</material>
+    <turnGravityOff>false</turnGravityOff>
+  </gazebo>
+ 
+  <gazebo reference="rear_fender_link">
+    <material>Gazebo/Yellow</material>
+    <turnGravityOff>false</turnGravityOff>
+  </gazebo>
+  <gazebo reference="front_left_wheel_link">
+    <material>Gazebo/Black</material>
+  </gazebo>
+  <gazebo reference="front_right_wheel_link">
+    <material>Gazebo/Black</material>
+  </gazebo>
+  <gazebo reference="rear_left_wheel_link">
+    <material>Gazebo/Black</material>
+  </gazebo>
+  <gazebo reference="rear_right_wheel_link">
+    <material>Gazebo/Black</material>
+  </gazebo>
+
+</robot>

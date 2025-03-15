@@ -31,11 +31,18 @@ Ensure you have the following software installed:
 - **ROS 2 Humble** ([Installation Guide](https://docs.ros.org/en/humble/Installation.html))
 - **Gazebo for simulation**
 - **RTAB-Map for SLAM**
+   ```bash
+   sudo apt install ros-humble-rtabmap*
+   ```
 - **Ros2 realsense packages**
+   ```bash
+   sudo apt install ros-humble-realsense*
+   ```
 - **Python and ultralitics for YOLO to work**
 - **Colcon for building packages**
-- **Make sure the sensors are connected to the robot and ping them**
-
+- **Make sure the sensors are connected to the robot and download drivers and ping them**
+([Robosense Lidar](https://github.com/RoboSense-LiDAR/rslidar_sdk))
+([Rp Lidar](https://github.com/Slamtec/rplidar_ros))
 ---
 
 ## Repository Structure

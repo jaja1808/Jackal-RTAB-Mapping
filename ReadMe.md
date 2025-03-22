@@ -29,7 +29,14 @@ Ensure you have the following software installed:
 
 - **Ubuntu 22.04**
 - **ROS 2 Humble** ([Installation Guide](https://docs.ros.org/en/humble/Installation.html))
-- **Gazebo for simulation**
+- **Packages for simulation**
+   ```bash
+   sudo apt install ros-humble-gazebo-ros-pkgs
+   sudo apt install ros-humble-xacro* 
+   sudo apt install ros-humble-twist-mux
+   sudo apt install ros-humble-robot-localization
+   sudo apt install ros-humble-interactive-marker-twist-server  
+   ```
 - **RTAB-Map for SLAM**
    ```bash
    sudo apt install ros-humble-rtabmap*
@@ -37,6 +44,14 @@ Ensure you have the following software installed:
 - **Ros2 realsense packages**
    ```bash
    sudo apt install ros-humble-realsense*
+   ```
+- **Ros2 velodyne packages**   
+   ```bash
+   sudo apt install ros-humble-velodyne*
+   ```
+- **Clearpath packages**   
+   ```bash
+   sudo apt install ros-humble-clearpath*
    ```
 - **Python and ultralitics for YOLO to work**
 - **Colcon for building packages**
@@ -123,9 +138,9 @@ ros2 launch jackal_rtab_map rviz.launch.py
 ## Results
 Below are some images of **SLAM mapping results** from both **simulation** and **real-world execution**:
 
-![Simulation](./images/simulation.mp4)
+![Simulation](./images/simulation.gif)
 
-![Realtime](./images/realtime.mp4)
+![Realtime](./images/realtime.gif)
 
 ---
 
